@@ -16,6 +16,21 @@
   margin: 0;
   padding: 0;
 }
+.button-type-1 {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: 1px solid white;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition-duration: 0.3s;
+}
+.button-type-1:hover {
+  background: white;
+  color: #9297e0;
+}
 .authPage {
   display: flex;
   flex-direction: column;
@@ -61,6 +76,7 @@
   transition-duration: 0.3s;
 }
 .authPage__item {
+  text-align: center;
   z-index: 1;
 }
 .authPage__formWrap {
@@ -69,16 +85,36 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  left: 333px;
   min-height: 380px;
   min-width: 300px;
   background: white;
   z-index: 2;
-  transition-duration: 0.3s;
+  transition-duration: 0.6s;
+}
+.authPage__formWrap_left {
+  transform: translate(-50%);
+}
+.authPage__formWrap_right {
+  transform: translate(50%);
 }
 .authPage__title {
   letter-spacing: 1px;
   font-size: 20px;
   color: white;
+}
+.authPage__button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: 1px solid white;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition-duration: 0.3s;
+}
+.authPage__button:hover {
+  background: white;
+  color: #9297e0;
 }
 /*# sourceMappingURL=common.css.map */

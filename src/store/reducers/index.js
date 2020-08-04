@@ -1,7 +1,6 @@
 import { combineReducers } from "redux";
-import LogIn from "./LogIn";
-import SignUp from "./SignUp";
+import forms from "./forms";
 
 export default combineReducers({
-    LogIn, SignUp
+    forms
 });

@@ -1,27 +1,23 @@
+import  * as types from "./types";
 import axios from "axios";
-import {
-    SET_ACTIVITY_FORM_LOGIN,
-    SET_ACTIVITY_FORM_SIGNUP,
-    SET_AUTH, SET_USERS
-} from "./types";
 
 
 // Устанавливаем активность (видимость) у формы авторизации
-export const setActivityFormLogIn = ( value ) => {
+export const setActivityFormLogIn = ( payload ) => async dispatch => {
     dispatch({
-        type: SET_ACTIVITY_FORM_LOGIN,
-        payload: value
+        type: types.SET_ACTIVITY_FORM_LOGIN,
+        payload
     });
-}
+};
 
 
 // Устанавливаем активность (видимость) у формы регистрации
-export const setActivityFormSignUp = ( value ) => {
+export const setActivityFormSignUp = ( payload ) => async dispatch => {
     dispatch({
-        type: SET_ACTIVITY_FORM_SIGNUP,
-        payload: value
+        type: types.SET_ACTIVITY_FORM_SIGNUP,
+        payload
     });
-}
+};
 
 
 // Получение списка пользователей
@@ -29,7 +25,7 @@ export const getUsers = () => async dispatch => {
     const response = await axios.get("");
 
     dispatch({
-        type: SET_USERS,
+        type: types.SET_USERS,
         payload: response.data
     });
 };
@@ -40,7 +36,7 @@ export const setAuth = ( data ) => async dispatch => {
     const response = await axios.get("");
 
     dispatch({
-        type: SET_AUTH,
+        type: types.SET_AUTH,
         payload: response.data
     });
 };

@@ -8,7 +8,7 @@ const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOO
 const store = createStore(
     reducers,
     composeEnhancers(applyMiddleware(...middleware))
-)
+);
 
 
 export { store };

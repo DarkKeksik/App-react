@@ -12,12 +12,30 @@
 @extraColor-1: #9297e0;
 @extraColor-2: #9da3e8;
 @text-color-1: white;
+@buttom-color-1: #ff73b3;
+@buttom-color-2: white;
 
 
 // Общие миксины
-.animTime() { transition-duration: .3s; }
+.animTime(@val: .3s) { transition-duration: @val; }
 .rotateMixin() { transform: rotateX(52deg) rotateY(15deg) rotateZ(-38deg); }
 .fontRoboto() { font-family: 'Roboto', sans-serif; }
+.button-type-1 {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: 1px solid @buttom-color-2;
+  color: @buttom-color-2;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  .animTime();
+
+  &:hover {
+    background: @buttom-color-2;
+    color: @extraColor-1;
+  }
+}
 
 
 .authPage {
@@ -68,6 +86,7 @@
   }
 
   &__item {
+    text-align: center;
     z-index: 1;
   }
   &__formWrap {
@@ -76,17 +95,24 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    left: 333px;
     min-height: 380px;
     min-width: 300px;
     background: white;
     z-index: 2;
-    .animTime();
+    .animTime(.6s);
+
+    // Под анимацию
+    &_left { transform: translate(-50%); }
+    &_right { transform: translate(50%); }
   }
 
   &__title {
     letter-spacing: 1px;
     font-size: 20px;
     color: @text-color-1;
+  }
+
+  &__button {
+    .button-type-1;
   }
 }
