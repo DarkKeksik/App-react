@@ -21,7 +21,7 @@ export const setActivityFormSignUp = ( payload ) => async dispatch => {
 
 
 // Получение списка пользователей
-export const getUsers = (data) => async dispatch => {
+export const getUsers = ( data ) => async dispatch => {
     const response = await axios.get("");
 
     dispatch({
@@ -33,10 +33,19 @@ export const getUsers = (data) => async dispatch => {
 
 // Получение токена авторизации
 export const setAuth = ( data ) => async dispatch => {
-    const response = await axios.get("");
+    const options = {
+        url: "http://emphasoft-test-assignment.herokuapp.com/api-token-auth/",
+        method: "POST",
+        headers: { 'content-type': 'application/json' },
+        data: data
+    };
 
-    dispatch({
-        type: types.SET_AUTH,
-        payload: response.data
+    await axios( options ).then(( res ) => {
+        dispatch({
+            type: types.SET_AUTH,
+            payload: res.data.token
+        });
+    }).catch((data) => {
+        console.log(data);
     });
 };
