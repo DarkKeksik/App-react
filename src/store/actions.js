@@ -21,7 +21,7 @@ export const setActivityFormSignUp = ( payload ) => async dispatch => {
 
 
 // Получение списка пользователей
-export const getUsers = () => async dispatch => {
+export const getUsers = (data) => async dispatch => {
     const response = await axios.get("");
 
     dispatch({

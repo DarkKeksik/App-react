@@ -16,7 +16,6 @@ const Auth = ({forms, setActivityFormLogIn, setActivityFormSignUp}) => {
         setActivityFormSignUp(true);
     };
 
-
     return (
         <div className="authPage">
             <div className="authPage__box">
@@ -37,12 +36,12 @@ const Auth = ({forms, setActivityFormLogIn, setActivityFormSignUp}) => {
                 </div>
 
                 <div
-                    className = {`authPage__formWrap
-                        ${ forms.formLogin.visible === true ? "authPage__formWrap_left" : "authPage__formWrap_right" }`
-                    }
+                    className = {`
+                        authPage__formWrap
+                        ${ forms.formLogin.visibleOnAuthPage === true ? "authPage__formWrap_left" : "authPage__formWrap_right" }
+                    `}
                 >
-                    <LogIn />
-                    <SignUp />
+                    { forms.formLogin.visibleOnAuthPage === true ? <LogIn /> : <SignUp /> }
                 </div>
             </div>
         </div>

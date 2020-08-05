@@ -11,6 +11,7 @@
 @basicColor-2: #999ede;
 @extraColor-1: #9297e0;
 @extraColor-2: #9da3e8;
+@extraColor-3: #ff73b3;
 @text-color-1: white;
 @buttom-color-1: #ff73b3;
 @buttom-color-2: white;
@@ -20,12 +21,30 @@
 .animTime(@val: .3s) { transition-duration: @val; }
 .rotateMixin() { transform: rotateX(52deg) rotateY(15deg) rotateZ(-38deg); }
 .fontRoboto() { font-family: 'Roboto', sans-serif; }
+.form-type-1 {
+  width: 100%;
+  padding: 25px;
+  box-sizing: border-box;
+
+  input { padding: 10px 5px; }
+  input[type="submit"] {
+    padding: 10px 32px;
+    margin: 20px auto 0 auto;
+  }
+
+  &__wrap {
+    display: grid; // Использую grid просто из-за великолепного кросбраузерного grid-gap
+    grid-template-columns: 1fr;
+    grid-gap: 5px;
+  }
+}
 .button-type-1 {
   display: inline-block;
   padding: 10px 20px;
   margin-top: 10px;
   border: 1px solid @buttom-color-2;
   color: @buttom-color-2;
+  background: inherit;
   text-decoration: none;
   cursor: pointer;
   user-select: none;
@@ -36,7 +55,19 @@
     color: @extraColor-1;
   }
 }
+.button-type-2 {
+  display: block;
+  color: white;
+  background: @extraColor-3;
+  box-shadow: 0 0 5px 1px @extraColor-3;
+  border: 0;
+  padding: 10px 32px;
+  cursor: pointer;
+  .animTime();
 
+  &:hover { opacity: .6; }
+  &:focus { outline: 0; }
+}
 
 .authPage {
   display: flex;

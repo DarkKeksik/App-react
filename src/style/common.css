@@ -16,12 +16,30 @@
   margin: 0;
   padding: 0;
 }
+.form-type-1 {
+  width: 100%;
+  padding: 25px;
+  box-sizing: border-box;
+}
+.form-type-1 input {
+  padding: 10px 5px;
+}
+.form-type-1 input[type="submit"] {
+  padding: 10px 32px;
+  margin: 20px auto 0 auto;
+}
+.form-type-1__wrap {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 5px;
+}
 .button-type-1 {
   display: inline-block;
   padding: 10px 20px;
   margin-top: 10px;
   border: 1px solid white;
   color: white;
+  background: inherit;
   text-decoration: none;
   cursor: pointer;
   user-select: none;
@@ -30,6 +48,22 @@
 .button-type-1:hover {
   background: white;
   color: #9297e0;
+}
+.button-type-2 {
+  display: block;
+  color: white;
+  background: #ff73b3;
+  box-shadow: 0 0 5px 1px #ff73b3;
+  border: 0;
+  padding: 10px 32px;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+.button-type-2:hover {
+  opacity: 0.6;
+}
+.button-type-2:focus {
+  outline: 0;
 }
 .authPage {
   display: flex;
@@ -108,6 +142,7 @@
   margin-top: 10px;
   border: 1px solid white;
   color: white;
+  background: inherit;
   text-decoration: none;
   cursor: pointer;
   user-select: none;

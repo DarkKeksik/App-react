@@ -1,10 +1,27 @@
 import React from "react";
-import styles from "./style.modules.css";
+import { connect } from "react-redux";
 
-const SignUp = () => {
+const SignUp = ({forms}) => {
     return (
-        <div>SignUp</div>
-    )
-}
+        <form className="form-type-1">
+            <div className={"form-type-1__wrap"}>
+                { forms.fields.map((field) => {
+                    return (
+                        <input
+                            key={field.name}
+                            type={field.type}
+                            placeholder={field.placeholder}
+                            name={field.name}
+                        />
+                    )
+                }) }
+            </div>
+            <input type="submit" value={"Регистрация"} className="button-type-2" />
+        </form>
+    );
+};
 
-export default SignUp;
+const mapStateToProps = ( state ) => ({ forms: state.forms.formSignUp });
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)( SignUp );
