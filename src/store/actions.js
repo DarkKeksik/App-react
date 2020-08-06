@@ -46,6 +46,6 @@ export const setAuth = ( data ) => async dispatch => {
             payload: res.data.token
         });
     }).catch((data) => {
-        console.log(data);
+        console.log(`Ошибка запроса \n ${ data }`);
     });
 };

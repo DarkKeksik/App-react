@@ -1,4 +1,4 @@
-import { SET_ACTIVITY_FORM_LOGIN, SET_ACTIVITY_FORM_SIGNUP, SET_AUTH } from "../types";
+import { SET_ACTIVITY_FORM_LOGIN, SET_ACTIVITY_FORM_SIGNUP } from "../types";
 const initState = {
     formLogin: {
         visibleOnAuthPage: true,
@@ -15,8 +15,7 @@ const initState = {
             { placeholder: "Фамилия", type: "text", name: "last_name" },
             { placeholder: "Пароль", type: "password", name: "password" }
         ],
-    },
-    tokenAuth: ""
+    }
 };
 
 
@@ -31,11 +30,6 @@ export default (state = initState, action) => {
             return {
                 ...state,
                 ...state.formSignUp.visibleOnAuthPage = action.payload
-            };
-        case SET_AUTH:
-            return {
-                ...state,
-                tokenAuth: action.payload
             };
         default:
             return state;

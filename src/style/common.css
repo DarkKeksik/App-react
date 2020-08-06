@@ -25,8 +25,9 @@
   padding: 10px 5px;
 }
 .form-type-1 input[type="submit"] {
-  padding: 10px 32px;
+  padding: 11px 32px;
   margin: 20px auto 0 auto;
+  font-size: 16px;
 }
 .form-type-1__wrap {
   display: grid;
@@ -53,7 +54,7 @@
   display: block;
   color: white;
   background: #ff73b3;
-  box-shadow: 0 0 5px 1px #ff73b3;
+  box-shadow: 0 3px 5px #a5487287;
   border: 0;
   padding: 10px 32px;
   cursor: pointer;
@@ -86,6 +87,7 @@
   height: 100vh;
   padding: 0 2rem;
   background: #999ede;
+  box-shadow: 0 0 5px #00000047;
 }
 .authPage__box:before {
   content: "";
@@ -96,7 +98,7 @@
   height: 285px;
   background-color: #9297e0;
   transform: rotateX(52deg) rotateY(15deg) rotateZ(-38deg);
-  transition-duration: 0.3s;
+  transition-duration: 0.6s;
 }
 .authPage__box:after {
   content: "";
@@ -107,7 +109,15 @@
   height: 180px;
   background-color: #9da3e8;
   transform: rotateX(52deg) rotateY(15deg) rotateZ(-38deg);
-  transition-duration: 0.3s;
+  transition-duration: 0.6s;
+}
+.authPage__box_left:before {
+  left: 15%;
+  top: 10%;
+}
+.authPage__box_left:after {
+  left: 25%;
+  top: 10%;
 }
 .authPage__item {
   text-align: center;
@@ -123,6 +133,7 @@
   min-width: 300px;
   background: white;
   z-index: 2;
+  box-shadow: 0 0 5px #00000047;
   transition-duration: 0.6s;
 }
 .authPage__formWrap_left {

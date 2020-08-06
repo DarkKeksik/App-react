@@ -15,6 +15,8 @@
 @text-color-1: white;
 @buttom-color-1: #ff73b3;
 @buttom-color-2: white;
+@color-shadow-1: #a5487287;
+@color-shadow-2: #00000047;
 
 
 // Общие миксины
@@ -28,8 +30,9 @@
 
   input { padding: 10px 5px; }
   input[type="submit"] {
-    padding: 10px 32px;
+    padding: 11px 32px;
     margin: 20px auto 0 auto;
+    font-size: 16px;
   }
 
   &__wrap {
@@ -59,7 +62,7 @@
   display: block;
   color: white;
   background: @extraColor-3;
-  box-shadow: 0 0 5px 1px @extraColor-3;
+  box-shadow: 0 3px 5px @color-shadow-1;
   border: 0;
   padding: 10px 32px;
   cursor: pointer;
@@ -91,6 +94,7 @@
     height: 100vh;
     padding: 0 2rem;
     background: @basicColor-2;
+    box-shadow: 0 0 5px @color-shadow-2;
 
     &:before {
       content: "";
@@ -101,7 +105,7 @@
       height: 285px;
       background-color: @extraColor-1;
       .rotateMixin();
-      .animTime;
+      .animTime(.6s);
     }
     &:after {
       content: "";
@@ -112,7 +116,18 @@
       height: 180px;
       background-color: @extraColor-2;
       .rotateMixin();
-      .animTime;
+      .animTime(.6s);
+    }
+
+    &_left {
+      &:before {
+        left: 15%;
+        top: 10%;
+      }
+      &:after {
+        left: 25%;
+        top: 10%;
+      }
     }
   }
 
@@ -130,6 +145,7 @@
     min-width: 300px;
     background: white;
     z-index: 2;
+    box-shadow: 0 0 5px @color-shadow-2;
     .animTime(.6s);
 
     // Под анимацию
