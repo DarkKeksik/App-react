@@ -10,14 +10,22 @@ const initState = {
     formSignUp: {
         visibleOnAuthPage: false,
         fields: [
-            { placeholder: "Логин", type: "text", name: "username" },
-            { placeholder: "Имя", type: "text", name: "first_name" },
-            { placeholder: "Фамилия", type: "text", name: "last_name" },
-            { placeholder: "Пароль", type: "password", name: "password" }
+            {placeholder: "Логин", type: "text", name: "username"},
+            {placeholder: "Имя", type: "text", name: "first_name"},
+            {placeholder: "Фамилия", type: "text", name: "last_name"},
+            {placeholder: "Псевдоним", type: "text", name: "last_login"},
+            {placeholder: "Пароль", type: "password", name: "password"},
+            {placeholder: "Активность", type: "radio", name: "active", options: [
+                {title: "Активен", value: "true"},
+                {title: "Неактивен", value: "false"}
+            ]},
+            {placeholder: "Суперпользователь", type: "radio", name: "is_superuser", options: [
+                {title: "Да", value: "true"},
+                {title: "Нет", value: "false"}
+            ]}
         ],
     }
 };
-
 
 export default (state = initState, action) => {
     switch (action.type) {
