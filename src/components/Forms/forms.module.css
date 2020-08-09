@@ -1,0 +1,28 @@
+.inputError {
+  border: 2px solid #d77373;
+}
+.inputError__text {
+  color: #d77373;
+  font-size: 14px;
+}
+.checkboxWrap {
+  color: #5a5a5a;
+}
+.checkboxWrap__input {
+  margin-left: 5px;
+}
+.radioWrap {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 5px 0;
+  gap: 5px;
+  color: #333;
+  border-bottom: 2px solid #ececec;
+}
+.radioWrap__label {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 5px;
+  align-items: center;
+}
+/*# sourceMappingURL=forms.module.css.map */

@@ -7,98 +7,109 @@
 import React, {Fragment} from "react";
 import { connect } from "react-redux";
 import { Formik, Form, Field } from "formik";
-import { setAuth } from "../../store/actions";
-import * as Yup from "yup";
+import { setAuth, createNewUser } from "../../store/actions";
+import styles from "./forms.module.css";
+import LoginSchema from "./validationSchema";
 
-const LoginSchema = Yup.object().shape({
-    username: Yup.string()
-        .min(1, 'Слишком короткий логин')
-        .max(50, 'Логин не более 50 символов')
-        .required('Логин обязателен'),
-    password: Yup.string()
-        .min(1, 'Слишком короткий пароль')
-        .max(128, 'Слишком длинный пароль')
-        .matches(
-            /^(?=.*[A-Z])(?=.*\d).{8,}$/,
-            "Используйте буквы верхнего регистра и цифры, например niceDayJonny1"
-        )
-        .required('Пароль обязателен'),
-    first_name: Yup.string()
-        .min(2, 'Слишком короткое имя')
-        .max(50, 'У вас отличное имя, но мы не можем его обработать')
-        .required('Пароль обязателен'),
-    last_name: Yup.string()
-        .min(2, 'Слишком короткое имя')
-        .max(150, 'У вас отличная фамилия, но мы не можем ее обработать')
-});
+
+const getDataTime = () => {
+    let today = new Date();
+    let dateNow = {
+        date: today.getDate() < 10 ? `0${ today.getDate() }` : today.getDate(),
+        mounth: today.getMonth() < 10 ? `0${ today.getMonth() + 1 }` : today.getMonth() + 1,
+        year: today.getFullYear() < 10 ? `0${ today.getFullYear() }` : today.getFullYear()
+    }
+    let timeNow = {
+        hours: today.getHours() < 10 ? `0${ today.getHours() }` : today.getHours(),
+        minutes: today.getMinutes() < 10 ? `0${ today.getMinutes() }` : today.getMinutes(),
+        seconds: today.getSeconds() < 10 ? `0${ today.getSeconds() }` : today.getSeconds()
+    }
+
+    return `${dateNow.date}.${dateNow.mounth}.${dateNow.year}-${timeNow.hours}:${timeNow.minutes}:${timeNow.seconds}`;
+}
+
 
 const Forms = (props) => {
     // Парсим начальное состояние для Formik из store
-    const getStateForFormik = () => {
+    const getStateForFormik = (fields) => {
         let stateFields = {};
-        props.formCurrent.fields.forEach((field) => stateFields[field.name] = "");
+        fields.forEach((field) => {
+            if ( field.name === "last_login" ) {
+                stateFields[field.name] = getDataTime();
+            }
+            else if ( field.name === "is_active" || field.name === "is_superuser" ) {
+                stateFields[field.name] = true;
+            } else {
+                stateFields[field.name] = "";
+            }
+        });
         return stateFields;
     };
 
-    console.log("Проверка токена ", props.auth.token);
-
     return (
         <Formik
-            initialValues={ getStateForFormik() }
+            initialValues={ getStateForFormik( props.formCurrent.fields ) }
             validationSchema={ LoginSchema }
-            onSubmit={(values) => {
-                props.setAuth(values); alert(values);}
-            }
+            onSubmit={(values) => props[props.actionName](values)}
         >
 
-            {({ errors, touched }) => (
-                <Form className="form-type-1">
+            {({values, errors, touched }) => (
+                <Form className={`form-type-1 ${props.className}`}>
                     <div className={"form-type-1__wrap"}>
 
-                        {/* Для input type radio отдельный шаблон */}
+                        {/* Для input type checkbox отдельный шаблон */}
                         {props.formCurrent.fields.map((field) => {
-                            if ( field.type === "radio" ) {
+
+                            if ( field.type === "checkbox" ) {
                                 return (
-                                    <div>
-                                        <p> { field.placeholder } </p>
-                                        { field.options.map((option)=>{
-                                            return (
+                                    <Fragment key={field.name}>
+                                        <div className={styles.checkboxWrap}>
+                                            <>
                                                 <label>
+                                                    { field.placeholder }
                                                     <Field
                                                         key={field.name}
                                                         type={field.type}
                                                         name={field.name}
-                                                        value={option.value}
+                                                        className={styles.checkboxWrap__input}
                                                     />
-                                                    { option.title }
                                                 </label>
-                                            )
-                                        }) }
+                                            </>
+                                        </div>
                                         {errors[field.name] && touched[field.name] ? (
-                                            <div>{errors[field.name]}</div>
+                                            <p className={styles.inputError__text}>{errors[field.name]}</p>
                                         ) : null}
-                                    </div>
+                                    </Fragment>
                                 )
                             }
 
                             return (
-                                <Fragment>
+                                <div
+                                    className={`
+                                        form-type-1__item
+                                        ${ field.name === "last_login" ? "d-none" : null}
+                                    `}
+                                     key={field.name}>
                                     <Field
                                         key={field.name}
                                         type={field.type}
                                         placeholder={field.placeholder}
                                         name={field.name}
-                                        value={field.value}
+                                        className={errors[field.name] && touched[field.name] ? styles.inputError : null}
                                     />
                                     {errors[field.name] && touched[field.name] ? (
-                                        <div>{errors[field.name]}</div>
+                                        <p className={styles.inputError__text}>{errors[field.name]}</p>
                                     ) : null}
-                                </Fragment>
+                                </div>
                             )
-                        }) }
 
+                        }) }
                     </div>
-                    <input type="submit" value={"Войти"} className="button-type-2" />
+                    <input
+                        type="submit"
+                        value={props.formCurrent.submit.placeholder}
+                        className="button-type-2"
+                    />
                 </Form>
             )}
         </Formik>
@@ -107,5 +118,5 @@ const Forms = (props) => {
 
 
 const mapStateToProps = ( state ) => ({ forms: state.forms, auth: state.auth });
-const mapDispatchToProps = { setAuth };
+const mapDispatchToProps = { setAuth, createNewUser };
 export default connect(mapStateToProps, mapDispatchToProps)( Forms );

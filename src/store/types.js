@@ -1,6 +1,8 @@
 // Видимость форм
 export const SET_ACTIVITY_FORM_LOGIN = "SET_ACTIVITY_FORM_LOGIN";
 export const SET_ACTIVITY_FORM_SIGNUP = "SET_ACTIVITY_FORM_SIGNUP";
+export const CREATE_NEW_USER = "CREATE_NEW_USER";
+export const CHECK_ON_AUTH = "CHECK_ON_AUTH";
 
 
 // Авторизация

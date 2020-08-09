@@ -34,6 +34,10 @@
   grid-template-columns: 1fr;
   grid-gap: 5px;
 }
+.form-type-1__item {
+  display: flex;
+  flex-direction: column;
+}
 .button-type-1 {
   display: inline-block;
   padding: 10px 20px;
@@ -65,6 +69,9 @@
 }
 .button-type-2:focus {
   outline: 0;
+}
+.d-none {
+  display: none;
 }
 .authPage {
   display: flex;
@@ -130,7 +137,8 @@
   align-items: center;
   position: absolute;
   min-height: 380px;
-  min-width: 300px;
+  max-width: 300px;
+  width: 100%;
   background: white;
   z-index: 2;
   box-shadow: 0 0 5px #00000047;
@@ -162,5 +170,36 @@
 .authPage__button:hover {
   background: white;
   color: #9297e0;
+}
+@media screen and (max-width: 700px) {
+  .authPage__box {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 0.5fr 1fr;
+    overflow-x: hidden;
+    max-height: inherit;
+    padding: inherit;
+  }
+  .authPage__box:before {
+    top: 10%;
+  }
+  .authPage__box_left:before {
+    left: 13%;
+    top: 15%;
+  }
+  .authPage__formWrap {
+    position: inherit;
+    max-width: inherit;
+    height: 100%;
+  }
+  .authPage__formWrap_left {
+    transform: inherit;
+  }
+  .authPage__formWrap_right {
+    transform: inherit;
+  }
+  .authPage__item {
+    width: 100%;
+    padding: 10px 5px;
+  }
 }
 /*# sourceMappingURL=common.css.map */

@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Form } from "../components";
 import { setActivityFormLogIn, setActivityFormSignUp } from "../store/actions";
@@ -23,16 +23,13 @@ const Auth = ({forms, setActivityFormLogIn, setActivityFormSignUp}) => {
     *  formWrapClass - класс для того чтобы форма анимировалась
     *  formBeforeAfterClass - класс для анимации блоков на фоне
     */
-    let formCurrent,
-        formWrapClass,
+    let formWrapClass,
         formBeforeAfterClass;
 
     if ( forms.formLogin.visibleOnAuthPage === true ) {
-        formCurrent = <Fragment> <Form formCurrent={forms.formLogin} /> </Fragment>;
         formWrapClass = "authPage__formWrap_left";
         formBeforeAfterClass = "authPage__box_left";
     } else if ( forms.formSignUp.visibleOnAuthPage === true ) {
-        formCurrent = <Form formCurrent={forms.formSignUp} />;
         formWrapClass = "authPage__formWrap_right";
         formBeforeAfterClass = "authPage__box_right";
     }
@@ -57,13 +54,17 @@ const Auth = ({forms, setActivityFormLogIn, setActivityFormSignUp}) => {
                     >Создать</span>
                 </div>
 
-                <div
-                    className = {`
-                        authPage__formWrap
-                        ${ formWrapClass }
-                    `}
-                >
-                    { formCurrent }
+                <div className = {`authPage__formWrap ${ formWrapClass }`}>
+                    <Form
+                        formCurrent={forms.formSignUp}
+                        className={forms.formSignUp.visibleOnAuthPage === true ? "" : "d-none"}
+                        actionName={"createNewUser"}
+                    />
+                    <Form
+                        className={forms.formLogin.visibleOnAuthPage === true ? "" : "d-none"}
+                        formCurrent={forms.formLogin}
+                        actionName={"setAuth"}
+                    />
                 </div>
             </div>
         </div>

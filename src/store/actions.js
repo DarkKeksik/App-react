@@ -33,6 +33,7 @@ export const getUsers = ( data ) => async dispatch => {
 
 // Получение токена авторизации
 export const setAuth = ( data ) => async dispatch => {
+
     const options = {
         url: "http://emphasoft-test-assignment.herokuapp.com/api-token-auth/",
         method: "POST",
@@ -45,7 +46,42 @@ export const setAuth = ( data ) => async dispatch => {
             type: types.SET_AUTH,
             payload: res.data.token
         });
+
+        // Записываем токен в хранилище
+        localStorage.setItem("tokenAuth", res.data.token);
+
     }).catch((data) => {
         console.log(`Ошибка запроса \n ${ data }`);
     });
 };
+
+
+// Проверка на авторизацию
+export const checkOnAuth = ( data ) => async dispatch => {
+    const tokenAuth = localStorage.getItem("tokenAuth");
+    dispatch({
+        type: types.CHECK_ON_AUTH,
+        payload: tokenAuth
+    });
+}
+
+
+// Добавление нового пользователя
+export const createNewUser = ( data ) => async dispatch => {
+    const options = {
+        url: "http://emphasoft-test-assignment.herokuapp.com/api/v1/users/",
+        method: "POST",
+        headers: { 'content-type': 'application/json' },
+        data: data
+    };
+
+    await axios( options ).then(( res ) => {
+        dispatch({
+            type: types.CREATE_NEW_USER,
+            payload: res.data.token
+        });
+    }).catch((data) => {
+        console.log(`Ошибка запроса \n ${ data }`);
+    });
+};
+

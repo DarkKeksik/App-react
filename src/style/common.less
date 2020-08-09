@@ -40,6 +40,11 @@
     grid-template-columns: 1fr;
     grid-gap: 5px;
   }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+  }
 }
 .button-type-1 {
   display: inline-block;
@@ -71,6 +76,7 @@
   &:hover { opacity: .6; }
   &:focus { outline: 0; }
 }
+.d-none { display: none; }
 
 .authPage {
   display: flex;
@@ -142,7 +148,8 @@
     align-items: center;
     position: absolute;
     min-height: 380px;
-    min-width: 300px;
+    max-width: 300px;
+    width: 100%;
     background: white;
     z-index: 2;
     box-shadow: 0 0 5px @color-shadow-2;
@@ -161,5 +168,37 @@
 
   &__button {
     .button-type-1;
+  }
+}
+
+
+@media screen and (max-width: 700px) {
+  .authPage {
+
+    &__box {
+      grid-template-columns: 1fr;
+      grid-template-rows: .5fr .5fr 1fr;
+      overflow-x: hidden;
+      max-height: inherit;
+      padding: inherit;
+
+      &:before { top: 10%; }
+      &_left:before {
+        left: 13%;
+        top: 15%;
+      }
+    }
+    &__formWrap {
+      position: inherit;
+      max-width: inherit;
+      height: 100%;
+
+      &_left { transform: inherit; }
+      &_right { transform: inherit; }
+    }
+    &__item {
+      width: 100%;
+      padding: 10px 5px;
+    }
   }
 }

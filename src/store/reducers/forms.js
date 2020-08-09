@@ -1,31 +1,36 @@
 import { SET_ACTIVITY_FORM_LOGIN, SET_ACTIVITY_FORM_SIGNUP } from "../types";
+
+
 const initState = {
     formLogin: {
         visibleOnAuthPage: true,
         fields: [
-            { placeholder: "Логин", type: "text", name: "username" },
-            { placeholder: "Пароль", type: "password", name: "password" }
-        ]
+            { placeholder: "Логин*", type: "text", name: "username" },
+            { placeholder: "Пароль*", type: "password", name: "password" }
+        ],
+        submit: {
+            placeholder: "Войти",
+            actionName: "setAuth"
+        }
     },
     formSignUp: {
         visibleOnAuthPage: false,
         fields: [
-            {placeholder: "Логин", type: "text", name: "username"},
+            {placeholder: "Логин*", type: "text", name: "username"},
+            {placeholder: "Пароль*", type: "password", name: "password"},
             {placeholder: "Имя", type: "text", name: "first_name"},
             {placeholder: "Фамилия", type: "text", name: "last_name"},
-            {placeholder: "Псевдоним", type: "text", name: "last_login"},
-            {placeholder: "Пароль", type: "password", name: "password"},
-            {placeholder: "Активность", type: "radio", name: "active", options: [
-                {title: "Активен", value: "true"},
-                {title: "Неактивен", value: "false"}
-            ]},
-            {placeholder: "Суперпользователь", type: "radio", name: "is_superuser", options: [
-                {title: "Да", value: "true"},
-                {title: "Нет", value: "false"}
-            ]}
+            {placeholder: "Дата последнего входа", type: "text", name: "last_login"},
+            {placeholder: "Активность*", type: "checkbox", name: "is_active"},
+            {placeholder: "Администратор", type: "checkbox", name: "is_superuser"}
         ],
+        submit: {
+            placeholder: "Создать",
+            actionName: "createNewUser"
+        }
     }
 };
+
 
 export default (state = initState, action) => {
     switch (action.type) {
